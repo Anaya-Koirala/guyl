@@ -34,11 +34,10 @@ class SingleDownload:
         self.author = self.yt.author
         self.date = self.yt.publish_date.strftime("%Y-%m-%d")
         self.length = self.yt.length
-        self.yt = pytube.Playlist(self.link)
           
     def download_video_default(self):
-        self.yt.streams.get_highest_resolution().download()
+        self.yt.streams.get_highest_resolution().download(filename=f"'{self.title}'.mp4")
     
     def download_audio_default(self):
-        self.yt.streams.filter(abr="128kbps",progressive=False).first().download()
-
+        self.yt.streams.filter(abr="128kbps",progressive=False).first().download(filename=f"'{self.title}'.mp3")
+    
